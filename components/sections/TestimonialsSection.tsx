@@ -1,11 +1,11 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { TESTIMONIALS_SECTION } from '@/lib/constants';
+import { Quote } from 'lucide-react';
 
 interface Testimonial {
   quote: string;
   author: string;
   role: string;
-  company: string;
 }
 
 interface TestimonialsSectionProps {
@@ -29,13 +29,14 @@ export function TestimonialsSection({
           <p className="mx-auto max-w-2xl text-xl text-slate-600">{subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {testimonials.map((testimonial) => (
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {testimonials.map((testimonial, index) => (
             <Card
-              key={testimonial.author}
-              className="transition-shadow hover:shadow-lg"
+              key={index}
+              className="border-slate-200 bg-gradient-to-br from-white to-slate-50 transition-all hover:scale-105 hover:shadow-xl"
             >
               <CardContent className="pt-6">
+                <Quote className="mb-4 h-8 w-8 text-blue-500" />
                 <div className="mb-4 flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <span key={i} className="text-yellow-400">
@@ -43,16 +44,14 @@ export function TestimonialsSection({
                     </span>
                   ))}
                 </div>
-                <p className="mb-4 text-slate-700 italic">
+                <p className="mb-6 text-sm text-slate-700">
                   "{testimonial.quote}"
                 </p>
-                <div>
+                <div className="border-t border-slate-200 pt-4">
                   <p className="font-semibold text-slate-900">
                     {testimonial.author}
                   </p>
-                  <p className="text-sm text-slate-600">
-                    {testimonial.role} ב-{testimonial.company}
-                  </p>
+                  <p className="text-xs text-slate-600">{testimonial.role}</p>
                 </div>
               </CardContent>
             </Card>

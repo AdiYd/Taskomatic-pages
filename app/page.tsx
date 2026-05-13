@@ -2,6 +2,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
+import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { PricingSection } from '@/components/sections/PricingSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { FAQSection } from '@/components/sections/FAQSection';
@@ -14,6 +15,7 @@ export default function Home() {
       <main className="w-full flex-1">
         <HeroSection />
         <FeaturesSection />
+        <HowItWorksSection />
         <PricingSection />
         <TestimonialsSection />
         <FAQSection />

@@ -18,6 +18,7 @@ interface PricingPlan {
   features: string[];
   cta: string;
   highlighted: boolean;
+  badge?: string;
 }
 
 interface PricingSectionProps {
@@ -45,36 +46,49 @@ export function PricingSection({
           {plans.map((plan) => (
             <Card
               key={plan.name}
-              className={`flex flex-col ${
-                plan.highlighted ? 'shadow-lg ring-2 ring-blue-500' : ''
+              className={`relative flex flex-col transition-shadow hover:shadow-xl ${
+                plan.highlighted
+                  ? 'scale-105 border-2 border-blue-500 shadow-2xl'
+                  : ''
               }`}
             >
-              {plan.highlighted && (
-                <Badge className="mx-auto mt-4 w-fit">הפופולרי ביותר</Badge>
+              {plan.badge && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <Badge className="bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-1 text-sm font-semibold shadow-lg">
+                    {plan.badge}
+                  </Badge>
+                </div>
               )}
-              <CardHeader>
-                <CardTitle>{plan.name}</CardTitle>
-                <CardDescription>{plan.description}</CardDescription>
+              <CardHeader className="pt-8">
+                <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                <CardDescription className="text-base">
+                  {plan.description}
+                </CardDescription>
               </CardHeader>
               <CardContent className="flex flex-1 flex-col">
                 <div className="mb-6">
-                  <div className="text-3xl font-bold text-slate-900">
-                    {plan.price}
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl font-bold text-slate-900">
+                      {plan.price}
+                    </span>
+                    <span className="text-lg text-slate-600">
+                      {plan.period}
+                    </span>
                   </div>
-                  <div className="text-sm text-slate-600">{plan.period}</div>
                 </div>
 
                 <ul className="mb-8 flex-1 space-y-3">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
+                  {plan.features.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-3">
                       <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-600" />
-                      <span className="text-slate-700">{feature}</span>
+                      <span className="text-sm text-slate-700">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Button
                   variant={plan.highlighted ? 'default' : 'outline'}
+                  size="lg"
                   className="w-full"
                 >
                   {plan.cta}

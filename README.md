@@ -9,26 +9,31 @@ A modern, professional landing page for **Taskomatic** - the next generation of 
 ### Key Features
 
 🤖 **AI-Managed Paid Advertising**
+
 - Automated campaign creation, testing, and optimization 24/7
 - Smart budget management for maximum ROI
 - Runs on Facebook & Instagram with Meta Ads API
 
 📱 **Organic Social Media Marketing**
+
 - Automatic content creation and publishing
 - Post to Facebook groups, business pages, and Instagram
 - AI-generated content tailored to your brand
 
 🎨 **Professional Content Studio**
+
 - Generate images, copywriting, and converting videos
 - Powered by advanced AI models (GPT, Claude, Gemini)
 - Brand-consistent content creation
 
 💬 **WhatsApp AI Agent**
+
 - Autonomous chatbot for customer service
 - Lead nurturing and conversion 24/7
 - Intelligent conversation handling
 
 📊 **Analytics Dashboard**
+
 - Real-time insights and recommendations
 - Performance tracking across all campaigns
 - AI-powered optimization suggestions
