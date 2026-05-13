@@ -3,18 +3,18 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
-import { FAQ_SECTION } from "@/lib/constants"
+} from '@/components/ui/accordion';
+import { FAQ_SECTION } from '@/lib/constants';
 
 interface FAQ {
-  question: string
-  answer: string
+  question: string;
+  answer: string;
 }
 
 interface FAQSectionProps {
-  title?: string
-  subtitle?: string
-  faqs?: FAQ[]
+  title?: string;
+  subtitle?: string;
+  faqs?: FAQ[];
 }
 
 export function FAQSection({
@@ -23,15 +23,13 @@ export function FAQSection({
   faqs = FAQ_SECTION.faqs,
 }: FAQSectionProps) {
   return (
-    <section id="faq" className="w-full py-20 md:py-32 bg-slate-50">
-      <div className="container max-w-3xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+    <section id="faq" className="w-full bg-slate-50 py-20 md:py-32">
+      <div className="container mx-auto max-w-3xl px-4">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl">
             {title}
           </h2>
-          <p className="text-xl text-slate-600">
-            {subtitle}
-          </p>
+          <p className="text-xl text-slate-600">{subtitle}</p>
         </div>
 
         <Accordion type="single" collapsible className="w-full">
@@ -48,5 +46,5 @@ export function FAQSection({
         </Accordion>
       </div>
     </section>
-  )
+  );
 }

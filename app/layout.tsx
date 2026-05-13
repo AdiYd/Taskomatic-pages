@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
-import "./globals.css";
-import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
+import type { Metadata } from 'next';
+import { Rubik } from 'next/font/google';
+import './globals.css';
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants';
 
 const rubik = Rubik({
-  variable: "--font-rubik",
-  subsets: ["hebrew", "latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  variable: '--font-rubik',
+  subsets: ['hebrew', 'latin'],
+  weight: ['300', '400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -24,11 +24,11 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: SITE_NAME,
-    locale: "he_IL",
-    type: "website",
+    locale: 'he_IL',
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: `${SITE_NAME} - פתרון ניהול משימות חכם`,
     description: SITE_DESCRIPTION,
   },
@@ -44,12 +44,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="he" dir="rtl" className={`${rubik.variable} h-full scroll-smooth`}>
+    <html
+      lang="he"
+      dir="rtl"
+      className={`${rubik.variable} h-full scroll-smooth`}
+    >
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className={`${rubik.className} min-h-full flex flex-col bg-white text-slate-900 antialiased`}>
+      <body
+        className={`${rubik.className} flex min-h-full flex-col bg-white text-slate-900 antialiased`}
+      >
         {children}
       </body>
     </html>

@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+
+# Build output
+.next
+out
+dist
+build
+
+# Cache
+.turbo
+.eslintcache
+
+# Logs
+*.log
+
+# Environment files
+.env*.local
+
+# Lock files (exclude npm/pnpm, keep yarn.lock)
+package-lock.json
+pnpm-lock.yaml
