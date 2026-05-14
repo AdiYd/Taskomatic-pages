@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Rubik } from 'next/font/google';
 import './globals.css';
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const rubik = Rubik({
   variable: '--font-rubik',
@@ -48,15 +49,23 @@ export default function RootLayout({
       lang="he"
       dir="rtl"
       className={`${rubik.variable} h-full scroll-smooth`}
+      suppressHydrationWarning
     >
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body
-        className={`${rubik.className} flex min-h-full flex-col bg-white text-slate-900 antialiased`}
+        className={`${rubik.className} flex min-h-full flex-col antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange={false}
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

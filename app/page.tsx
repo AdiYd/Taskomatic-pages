@@ -1,25 +1,25 @@
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { FeaturesSection } from '@/components/sections/FeaturesSection';
-import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
-import { PricingSection } from '@/components/sections/PricingSection';
-import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { FAQSection } from '@/components/sections/FAQSection';
-import { CTASection } from '@/components/sections/CTASection';
+import { Hero } from '@/components/sections/Hero';
+import { Features } from '@/components/sections/Features';
+import { HowItWorks } from '@/components/sections/HowItWork';
+import { Pricing } from '@/components/sections/Pricing';
+import { Testimonials } from '@/components/sections/Testimonials';
+import { FAQ } from '@/components/sections/FAQ';
+import { CTA } from '@/components/sections/CTA';
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="w-full flex-1">
-        <HeroSection />
-        <FeaturesSection />
-        <HowItWorksSection />
-        <PricingSection />
-        <TestimonialsSection />
-        <FAQSection />
-        <CTASection />
+        <Hero />
+        <Features />
+        <HowItWorks />
+        <Pricing />
+        <Testimonials />
+        <FAQ />
+        <CTA />
       </main>
       <Footer />
     </div>

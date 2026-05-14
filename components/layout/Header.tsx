@@ -1,32 +1,55 @@
 import { Button } from '@/components/ui/button';
-import { NAV_LINKS, SITE_NAME } from '@/lib/constants';
+import { SITE_NAME } from '@/lib/constants';
+import { ThemeToggle } from '@/components/theme-toggle';
+import { HEADER_CONTENT } from './content';
 import Link from 'next/link';
+import { Sparkles } from 'lucide-react';
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl font-bold text-blue-600">{SITE_NAME}</span>
+    <header className="glass z-fixed sticky top-0 w-full border-b backdrop-blur-xl">
+      <div className="mx-auto flex h-16 items-center justify-between px-4">
+        {/* Logo */}
+        <Link href="/" className="hover-lift group flex items-center gap-2">
+          <div className="bg-gradient-primary flex h-9 w-9 items-center justify-center rounded-lg shadow-md transition-all group-hover:shadow-lg">
+            <Sparkles className="h-5 w-5 text-white" />
+          </div>
+          <span className="text-gradient-primary text-2xl font-bold">
+            {SITE_NAME}
+          </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-1 md:flex">
+          {HEADER_CONTENT.navigation.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+              className="text-muted-foreground hover:text-primary rounded-button hover:bg-muted px-4 py-2 text-sm font-medium transition-all"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <Button variant="outline" size="sm">
-            התחברות
+        {/* Actions */}
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <Button
+            variant="ghost-primary"
+            size="sm"
+            asChild
+            className="hidden sm:inline-flex"
+          >
+            <Link href={HEADER_CONTENT.cta.secondary.href}>
+              {HEADER_CONTENT.cta.secondary.label}
+            </Link>
           </Button>
-          <Button size="sm">התחל בחינם</Button>
+          <Button size="sm" asChild>
+            <Link href={HEADER_CONTENT.cta.primary.href}>
+              {HEADER_CONTENT.cta.primary.label}
+            </Link>
+          </Button>
         </div>
       </div>
     </header>
