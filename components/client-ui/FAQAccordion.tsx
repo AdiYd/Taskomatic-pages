@@ -33,7 +33,7 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
       <Accordion
         type="single"
         collapsible
-        className="mx-auto w-full max-w-4xl space-y-4 rounded-lg backdrop-blur-sm"
+        className="bg-card/80 mx-auto w-full max-w-4xl space-y-4 rounded-lg p-4 backdrop-blur-xl"
       >
         {faqs.map((faq, index) => (
           <AccordionItem key={index} value={`item-${index}`}>

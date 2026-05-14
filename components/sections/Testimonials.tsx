@@ -53,7 +53,7 @@ export function Testimonials({
 }: TestimonialsProps) {
   return (
     <section className="bg-background clip-wave-top">
-      <div className="container mx-auto max-w-6xl px-4">
+      <div className="container mx-auto max-w-6xl px-4 max-sm:pt-8">
         <FadeBlur direction="up" duration={0.6}>
           <div className="mb-16 text-center">
             <h2 className="text-gradient-secondary mb-4 text-3xl font-bold md:text-4xl">

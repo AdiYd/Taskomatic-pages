@@ -22,7 +22,7 @@ export function HeaderWrapper({
   const [isVisible, setIsVisible] = useState(true);
   const [, setIsAtTop] = useState(true);
   const lastScrollY = useRef(0);
-  const { scrollY } = useScroll();
+  const { scrollY } = useScroll({ layoutEffect: false });
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const currentScrollY = latest;
@@ -58,7 +58,7 @@ export function HeaderWrapper({
         duration: 0.3,
         ease: 'easeInOut',
       }}
-      className={cn('z-fixed sticky top-0 w-full', className)}
+      className={cn('fixed top-0 z-50 w-full', className)}
     >
       {children}
     </motion.div>

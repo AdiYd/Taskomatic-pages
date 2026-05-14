@@ -7,7 +7,7 @@ import {
   CardDescription,
 } from '@/components/ui/card';
 import { Carousel3D } from '../ui/carousel-3d';
-import { useMobile } from '@/hooks/use-mobile';
+import { useState, useEffect } from 'react';
 
 interface Feature {
   title: string;
@@ -20,7 +20,19 @@ interface FeaturesGridProps {
 }
 
 export function FeaturesGrid({ features }: FeaturesGridProps) {
-  const isMobile = useMobile();
+  const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   const carouselItems = features.map((feature) => ({
     id: feature.title,
     content: (
@@ -42,6 +54,23 @@ export function FeaturesGrid({ features }: FeaturesGridProps) {
   }));
 
   // For mobile, we can show a simpler grid instead of the carousel
+  // Only render after client-side hydration to prevent mismatch
+  if (!isClient) {
+    // During SSR/hydration, always render the carousel to match server HTML
+    return (
+      <Carousel3D
+        items={carouselItems}
+        cardWidth={480}
+        cardHeight={300}
+        translateZ={550}
+        rotateX={-4}
+        perspective={8000}
+        animationDuration={45}
+        wrapperClassName="mt-36"
+      />
+    );
+  }
+
   if (isMobile) {
     return (
       <div className="grid grid-cols-1 gap-6">
