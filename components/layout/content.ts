@@ -13,7 +13,7 @@ export const HEADER_CONTENT = {
   ],
   cta: {
     primary: {
-      label: 'Get Started Free',
+      label: 'Get Started',
       href: '/signup',
     },
     secondary: {

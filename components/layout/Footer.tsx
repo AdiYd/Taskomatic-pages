@@ -55,9 +55,6 @@ export function Footer() {
                 {FOOTER_CONTENT.newsletter.title}
               </h4>
               <form onSubmit={handleSubscribe} className="flex gap-2">
-                <Button type="submit" size="icon-sm" className="shrink-0">
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
                 <Input
                   type="email"
                   placeholder={FOOTER_CONTENT.newsletter.placeholder}
@@ -68,6 +65,9 @@ export function Footer() {
                   className="flex-1"
                   required
                 />
+                <Button type="submit" size="icon-sm" className="shrink-0">
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
               </form>
               <p className="text-muted-foreground text-xs">
                 {FOOTER_CONTENT.newsletter.description}

@@ -75,7 +75,6 @@
   --radius-2xl: 1.5rem;    /* 24px - Special containers */
   --radius-full: 9999px;   /* Full rounded - Pills, avatars */
   --radius: var(--radius-md); /* Default radius */
-  --radius-button: var(--radius-lg); /* 6px - Standard button radius */
   
   /* ============================================
      SHADOWS SYSTEM
@@ -168,7 +167,7 @@
   /* Surface Colors - Deep Tech Navy */
   --background: 220 25% 8%;
   --foreground: 210 20% 98%;
-  --card: 220 25% 11%;
+  --card: 220 25% 15%;
   --card-foreground: 210 20% 98%;
   --popover: 220 25% 11%;
   --popover-foreground: 210 20% 98%;
@@ -615,6 +614,55 @@
   }
 }
 
+/* Sheet/Sidebar Animations with Spring Effect */
+@keyframes slide-in-from-right-spring {
+  0% {
+    transform: translateX(100%);
+  }
+  60% {
+    transform: translateX(-2%);
+  }
+  80% {
+    transform: translateX(1%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-to-right-spring {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-in-from-left-spring {
+  0% {
+    transform: translateX(-100%);
+  }
+  60% {
+    transform: translateX(2%);
+  }
+  80% {
+    transform: translateX(-1%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-to-left-spring {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 /* ============================================
    UTILITY LAYER - Animation Classes
    ============================================ */
@@ -719,7 +767,7 @@
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.5),
       transparent
     );
     transition: left 0.5s ease;
@@ -838,27 +886,31 @@
   /* Glass Morphism */
   .glass {
     background: hsl(var(--background) / 0.6);
-    backdrop-filter: blur(24px) saturate(200%);
-    -webkit-backdrop-filter: blur(24px) saturate(200%);
-  }
-  
-  @supports not (backdrop-filter: blur(24px)) {
-    .glass {
-      background: hsl(var(--background) / 0.95);
-    }
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    @apply  backdrop-blur-lg;
   }
 
   .glass-dark {
     background: hsl(var(--foreground) / 0.03);
-    backdrop-filter: blur(24px) saturate(200%);
-    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    backdrop-filter: blur(24px) ;
+    -webkit-backdrop-filter: blur(24px) ;
+    @apply backdrop-blur-lg;
   }
   
   @supports not (backdrop-filter: blur(24px)) {
-    .glass-dark {
+    .glass {
+      background: hsl(var(--background));
+      border-color: hsl(var(--border));
+    }
+     .glass-dark {
       background: hsl(var(--foreground) / 0.08);
+      border-color: hsl(var(--border) / 0.08);
     }
   }
+
+
+  
 
   /* Text Gradients */
   .text-gradient-primary {
@@ -932,10 +984,6 @@
     z-index: var(--z-notification);
   }
 
-  /* Border Radius Utilities */
-  .rounded-button {
-    border-radius: var(--radius-button);
-  }
 }
 
 /* ============================================

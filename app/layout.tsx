@@ -1,18 +1,21 @@
 import type { Metadata } from 'next';
 import { Rubik } from 'next/font/google';
 import './globals.css';
+
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants';
 import { ThemeProvider } from '@/components/theme-provider';
+import { ScrollToTop } from '@/components/layout';
+import { AccessibilityWidgetEnglish } from '@/components/layout/accessibility-widget/accessibility-widget-en';
 
 const rubik = Rubik({
   variable: '--font-rubik',
-  subsets: ['hebrew', 'latin'],
+  subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE_NAME} - פתרון ניהול משימות חכם`,
+    default: `${SITE_NAME} - AI-Powered Marketing Automation`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -21,16 +24,16 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
   },
   openGraph: {
-    title: `${SITE_NAME} - פתרון ניהול משימות חכם`,
+    title: `${SITE_NAME} - AI-Powered Marketing Automation`,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: SITE_NAME,
-    locale: 'he_IL',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE_NAME} - פתרון ניהול משימות חכם`,
+    title: `${SITE_NAME} - AI-Powered Marketing Automation`,
     description: SITE_DESCRIPTION,
   },
   robots: {
@@ -46,8 +49,8 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="he"
-      dir="rtl"
+      lang="en"
+      dir="ltr"
       className={`${rubik.variable} h-full scroll-smooth`}
       suppressHydrationWarning
     >
@@ -65,6 +68,8 @@ export default function RootLayout({
           disableTransitionOnChange={false}
         >
           {children}
+          <ScrollToTop />
+          <AccessibilityWidgetEnglish />
         </ThemeProvider>
       </body>
     </html>

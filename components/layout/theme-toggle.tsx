@@ -30,9 +30,9 @@ export function ThemeToggle() {
   return (
     <Button
       variant="ghost"
-      size="icon"
+      size="icon-sm"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="relative h-10 w-10 rounded-full"
+      className="relative"
     >
       <motion.div
         initial={false}
