@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 interface HeaderWrapperProps {
   children: React.ReactNode;
@@ -10,11 +11,13 @@ interface HeaderWrapperProps {
    * @default 2
    */
   hideAfterScreens?: number;
+  className?: string;
 }
 
 export function HeaderWrapper({
   children,
   hideAfterScreens = 2,
+  className,
 }: HeaderWrapperProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [, setIsAtTop] = useState(true);
@@ -55,7 +58,7 @@ export function HeaderWrapper({
         duration: 0.3,
         ease: 'easeInOut',
       }}
-      className="z-fixed sticky top-0 w-full"
+      className={cn('z-fixed sticky top-0 w-full', className)}
     >
       {children}
     </motion.div>

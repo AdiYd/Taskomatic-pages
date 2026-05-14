@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@variant dark (&:is(.dark *));
+
 :root {
   /* ============================================
      BASE COLORS - Light Mode
@@ -122,7 +124,7 @@
   --gradient-radial: radial-gradient(
     circle at center,
     hsl(var(--primary) / 0.15) 0%,
-    transparent 70%
+    transparent 60%
   );
   --gradient-hero: linear-gradient(
     135deg,
@@ -276,6 +278,10 @@
   
   /* Typography */
   --font-sans: var(--font-rubik);
+  
+  /* Animations */
+  --animation-accordion-down: accordion-down 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-accordion-up: accordion-up 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================
@@ -287,10 +293,12 @@
   from {
     height: 0;
     opacity: 0;
+    transform: translateY(-4px);
   }
   to {
     height: var(--radix-accordion-content-height);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -298,14 +306,182 @@
   from {
     height: var(--radix-accordion-content-height);
     opacity: 1;
+    transform: translateY(0);
   }
   to {
     height: 0;
     opacity: 0;
+    transform: translateY(-4px);
   }
 }
 
+/* Accordion Content Animation Application */
+.accordion-content[data-state='open'] {
+  animation: var(--animation-accordion-down);
+}
+
+.accordion-content[data-state='closed'] {
+  animation: var(--animation-accordion-up);
+}
+
+.chevron-icon {
+  transition: rotate var(--transition-base) ease-in-out;
+}
+
+.moving-gradient {
+  background-size: 200% 200%;
+  animation: GradientAnimation 16s ease infinite;
+}
+
+.shine-border {
+  position: relative; /* Needed to anchor the ::before pseudo-element */
+  z-index: 1;
+  /* Clip the gradient to the border-box (the padding and content area) */
+  /* This prevents the shine from bleeding into the background */
+}
+
+.shine-border::before {
+  content: '';
+  position: absolute;
+  z-index: -1; /* Place it behind the content */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Use padding to ensure the gradient only shows on the border area */
+  padding: 0.5px; /* Adjust this value to match your desired border thickness */
+  background: linear-gradient(
+    90deg,
+    #ff00ff00 0%,
+    /* Transparent */ #ffcc00 28%,
+    /* Sparkle color */ #ffffff 30%,
+    /* Intense highlight */ #ffcc00 32%,
+    /* Sparkle color */ #ff00ff00 100% /* Transparent */
+  );
+  background-size: 200% 100%; /* Make the gradient wider than the element for the sliding effect */
+  background-repeat: no-repeat;
+
+  /* Apply the animation */
+  animation: border-shine 4s linear infinite;
+
+  /* Important: Clip the pseudo-element to its border area */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  /* Optional: Round corners if needed */
+  border-radius: 0.5rem;
+}
+
+/* Text Shine Effect */
+.text-shine {
+  position: relative;
+  display: inline-block;
+  background: inherit;
+  background-clip: text;
+  -webkit-background-clip: text;
+  /* Override parent's transparent text to show the gradient color */
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+}
+
+.text-shine::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255, 255, 255, 0.7) 45%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.7) 45%,
+    transparent 65%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shine 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.dark .text-shine::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(255, 215, 0, 0.3) 40%,
+    rgba(255, 223, 0, 0.6) 45%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 223, 0, 0.6) 55%,
+    rgba(255, 215, 0, 0.3) 60%,
+    transparent 70%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shine 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+
+/* Button Shine Effect */
+.shine-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 1s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.shine-button:hover::before {
+  left: 100%;
+}
+
+
 /* Fade Animations */
+
+@keyframes border-shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes text-shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -516,6 +692,15 @@
   }
 }
 
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Wiggle & Shake Animations */
 @keyframes wiggle {
   0%,
@@ -663,18 +848,21 @@
   }
 }
 
+
+
 /* ============================================
    UTILITY LAYER - Animation Classes
    ============================================ */
 
 @layer utilities {
+  
   /* Accordion Animations */
   .animate-accordion-down {
-    animation: accordion-down 0.2s ease-out;
+    animation: accordion-down 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-accordion-up {
-    animation: accordion-up 0.2s ease-out;
+    animation: accordion-up 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Fade Animations */
@@ -994,6 +1182,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 html[dir='rtl'] {
@@ -1018,8 +1207,8 @@ body {
    ============================================ */
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -1028,13 +1217,13 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary));
+  background: hsl(var(--muted-foreground));
   border-radius: var(--radius-sm);
   transition: background var(--transition-fast);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary-hover));
+  background: hsl(var(--muted-foreground-hover));
 }
 
 /* ============================================
@@ -1064,26 +1253,14 @@ body {
    SMOOTH THEME TRANSITIONS
    ============================================ */
 
-* {
+/* Only apply theme transitions to specific properties, excluding transforms */
+/* Exclude animation components and carousels from global transitions */
+*:not([data-framer-motion]):not(.carousel3d-wrapper):not(.carousel3d-inner):not(.carousel3d-card) {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: var(--transition-fast);
 }
 
-/* Exclude animations and transforms from theme transitions */
-*,
-*::before,
-*::after {
-  transition-property: none;
-}
-
-body,
-body * {
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: var(--transition-fast);
-}
 
 /* ============================================
    ACCESSIBILITY IMPROVEMENTS
@@ -1151,20 +1328,21 @@ body * {
 }
 
 /* Section spacing */
-.section {
+section {
+  position: relative;
   padding-top: var(--section-spacing-sm);
   padding-bottom: var(--section-spacing-sm);
 }
 
 @media (min-width: 768px) {
-  .section {
+  section {
     padding-top: var(--section-spacing-md);
     padding-bottom: var(--section-spacing-md);
   }
 }
 
 @media (min-width: 1024px) {
-  .section {
+  section {
     padding-top: var(--section-spacing-lg);
     padding-bottom: var(--section-spacing-lg);
   }
@@ -1204,3 +1382,62 @@ body * {
   color: hsl(var(--info));
   border: 1px solid hsl(var(--info-border));
 }
+
+
+/* ============================================
+   Typography CLASSES
+   ============================================ */
+
+.font-sans {
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+h1,
+h2,h3,
+h4,h5,
+h6 {
+  color: hsl(var(--foreground));
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 4.25rem;
+  font-weight: 700;
+}
+h2 {
+  font-size: 2.25rem;
+  font-weight: 600;
+}
+h3 {
+  font-size: 2.25rem;
+  font-weight: 500;
+}
+h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+h5 {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+h6 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+
+/* Fit sizes to smaller screens */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+

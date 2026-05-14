@@ -1,4 +1,5 @@
 import { FAQAccordion } from '@/components/client-ui/FAQAccordion';
+import { FadeBlur } from '@/components/animations';
 
 // FAQ Section Content Configuration
 const FAQ_CONTENT = {
@@ -65,19 +66,18 @@ export function FAQ({
   faqs = FAQ_CONTENT.faqs,
 }: FAQProps) {
   return (
-    <section
-      id="faq"
-      className="bg-gradient-radial relative w-full overflow-hidden py-20 md:py-32"
-    >
-      <div className="container mx-auto max-w-3xl px-4">
-        <div className="mb-16 text-center">
-          <h2 className="text-gradient-primary mb-4 text-3xl font-bold md:text-4xl">
-            {title}
-          </h2>
-          <p className="text-muted-foreground text-xl">{subtitle}</p>
-        </div>
+    <section id="faq">
+      <div className="container mx-auto px-4">
+        <FadeBlur direction="up" duration={0.6}>
+          <div className="mb-16 text-center">
+            <h2 className="text-primary mb-4 font-bold">{title}</h2>
+            <p className="text-muted-foreground text-xl">{subtitle}</p>
+          </div>
+        </FadeBlur>
 
-        <FAQAccordion faqs={faqs} />
+        <FadeBlur direction="up" duration={0.7}>
+          <FAQAccordion faqs={faqs} />
+        </FadeBlur>
       </div>
     </section>
   );

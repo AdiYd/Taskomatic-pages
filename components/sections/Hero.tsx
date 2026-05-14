@@ -1,4 +1,5 @@
 import { HeroContent } from '@/components/client-ui/HeroContent';
+import { FadeBlur } from '@/components/animations';
 
 // Hero Section Content Configuration
 const HERO_CONTENT = {
@@ -23,16 +24,18 @@ export function Hero({
   cta_secondary = HERO_CONTENT.cta_secondary,
 }: HeroProps) {
   return (
-    <section className="text-foreground relative w-full overflow-hidden py-20 md:py-32 lg:py-40">
+    <section className="relative w-full overflow-hidden py-20 md:py-32 lg:py-30">
       {/* Animated gradient overlay */}
-      <div className="bg-gradient-radial absolute inset-0 opacity-50" />
+      {/* <div className="bg-gradient-radial absolute inset-0 opacity-50" /> */}
 
-      <HeroContent
-        title={title}
-        subtitle={subtitle}
-        cta={cta}
-        cta_secondary={cta_secondary}
-      />
+      <FadeBlur direction="up" duration={0.8}>
+        <HeroContent
+          title={title}
+          subtitle={subtitle}
+          cta={cta}
+          cta_secondary={cta_secondary}
+        />
+      </FadeBlur>
     </section>
   );
 }

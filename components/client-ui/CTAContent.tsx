@@ -14,29 +14,6 @@ interface CTAContentProps {
 export function CTAContent({ title, subtitle, cta, subcta }: CTAContentProps) {
   return (
     <>
-      {/* Animated background particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute h-2 w-2 rounded-full bg-white/20"
-            initial={{
-              x: (i * 70) % 1000,
-              y: (i * 35) % 500,
-            }}
-            animate={{
-              y: [(i * 35) % 500, (i * 35 + 150) % 500],
-              x: [(i * 70) % 1000, (i * 70 + 80) % 1000],
-            }}
-            transition={{
-              duration: 10 + (i % 8),
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
-          />
-        ))}
-      </div>
-
       <div className="relative z-10 container mx-auto max-w-4xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -50,7 +27,7 @@ export function CTAContent({ title, subtitle, cta, subcta }: CTAContentProps) {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="mx-auto inline-flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 text-sm font-medium text-white ring-1 ring-white/20 backdrop-blur-md"
+            className="mx-auto inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium ring-1 backdrop-blur-md"
           >
             <Sparkles className="text-warning h-4 w-4" />
             Ready to Get Started?
@@ -84,10 +61,7 @@ export function CTAContent({ title, subtitle, cta, subcta }: CTAContentProps) {
             className="pt-4"
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                size="lg"
-                className="group bg-background text-primary hover:shadow-glow-lg text-lg font-semibold shadow-2xl"
-              >
+              <Button size="lg" variant="main">
                 {cta}
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>

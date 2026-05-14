@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { ReactNode, useRef } from 'react';
+import { ReactNode, useRef, useEffect, useState } from 'react';
 
 interface StaggerFadeProps {
   children: ReactNode;
@@ -19,7 +19,18 @@ export function StaggerFade({
   className,
 }: StaggerFadeProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [isMobile, setIsMobile] = useState(true); // Mobile-first: start with true
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Mobile: trigger animation sooner for better UX
+  const margin = isMobile ? '0px' : '-100px';
+  const isInView = useInView(ref, { once: true, margin });
 
   const getDirectionOffset = () => {
     switch (direction) {
@@ -52,6 +63,7 @@ export function StaggerFade({
         },
       }}
       className={className}
+      data-framer-motion
     >
       {Array.isArray(children) ? (
         children.map((child, index) => (

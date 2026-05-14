@@ -46,6 +46,7 @@ export function ParallaxReveal({
         transformPerspective: 1000,
       }}
       className={className}
+      data-framer-motion
     >
       {children}
     </motion.div>

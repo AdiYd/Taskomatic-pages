@@ -1,6 +1,11 @@
 import type { Metadata } from 'next';
 import { Rubik } from 'next/font/google';
 import './globals.css';
+import './animations.css';
+import './blures.css';
+import './shapes.css';
+import './clip.css';
+import './carousel-3d.css';
 
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -58,14 +63,13 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body
-        className={`${rubik.className} flex min-h-full flex-col antialiased`}
-      >
+      <body className={`flex min-h-full flex-col antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
+          storageKey="page-main-theme"
           enableSystem
-          disableTransitionOnChange={false}
+          disableTransitionOnChange
         >
           {children}
           <ScrollToTop />

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ReactNode, useRef } from 'react';
+import { ReactNode, useRef, useEffect, useState } from 'react';
 
 interface SlideScaleProps {
   children: ReactNode;
@@ -17,10 +17,25 @@ export function SlideScale({
   className,
 }: SlideScaleProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(true); // Mobile-first: start with true
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Mobile: ULTRA-fast animation that completes as soon as element is visible
+  // Desktop: longer scroll range for dramatic effect
+  const offset: ['start end', 'start 0.7'] | ['start 0.9', 'end 0.1'] = isMobile
+    ? ['start end', 'start 0.7']
+    : ['start 0.9', 'end 0.1'];
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start 0.9', 'end 0.1'], // Animation starts at entry, ends at exit
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    offset: offset as any,
   });
 
   const slideIn = useTransform(
@@ -35,7 +50,12 @@ export function SlideScale({
   );
 
   return (
-    <motion.div ref={ref} style={{ y: slideIn, scale }} className={className}>
+    <motion.div
+      ref={ref}
+      style={{ y: slideIn, scale }}
+      className={className}
+      data-framer-motion
+    >
       {children}
     </motion.div>
   );

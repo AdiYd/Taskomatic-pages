@@ -30,17 +30,17 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.6, delay: 0.2 }}
     >
-      <Accordion type="single" collapsible className="w-full space-y-4">
+      <Accordion
+        type="single"
+        collapsible
+        className="mx-auto w-full max-w-4xl space-y-4 rounded-lg backdrop-blur-sm"
+      >
         {faqs.map((faq, index) => (
-          <AccordionItem
-            key={index}
-            value={`item-${index}`}
-            className="bg-card hover:border-primary rounded-lg border-2 px-6 transition-colors"
-          >
-            <AccordionTrigger className="text-right font-semibold hover:no-underline">
+          <AccordionItem key={index} value={`item-${index}`}>
+            <AccordionTrigger className="text-left text-base font-semibold hover:no-underline">
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground text-right">
+            <AccordionContent className="text-muted-foreground">
               {faq.answer}
             </AccordionContent>
           </AccordionItem>

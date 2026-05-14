@@ -1,0 +1,459 @@
+/* ============================================
+   ANIMATED BLUR & GRADIENT EFFECTS
+   
+   Usage: Add these classes to section containers or create wrapper divs
+   These effects blend with existing backgrounds using mix-blend-mode and opacity
+   ============================================ */
+
+/* ============================================
+   1. FLOATING ORBS
+   Multiple glowing orbs that float smoothly across the container
+   Usage: Add 'blur-floating-orbs' class to section or wrapper
+   ============================================ */
+
+.blur-floating-orbs {
+  position: relative;
+  overflow: hidden;
+}
+
+.blur-floating-orbs::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -25%;
+  width: 40%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    hsla(195, 85%, 55%, 0.15),
+    hsla(270, 70%, 60%, 0.1),
+    transparent 70%
+  );
+  filter: blur(60px);
+  animation: float-orb-1 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blur-floating-orbs::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  right: -20%;
+  width: 50%;
+  height: 80%;
+  background: radial-gradient(
+    circle at center,
+    hsla(175, 75%, 50%, 0.12),
+    hsla(200, 75%, 55%, 0.08),
+    transparent 70%
+  );
+  filter: blur(70px);
+  animation: float-orb-2 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes float-orb-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translate(30%, -20%) scale(1.1);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translate(-20%, 30%) scale(0.9);
+    opacity: 0.7;
+  }
+}
+
+@keyframes float-orb-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  33% {
+    transform: translate(-25%, 15%) scale(1.15);
+    opacity: 0.7;
+  }
+  66% {
+    transform: translate(20%, -25%) scale(0.95);
+    opacity: 0.6;
+  }
+}
+
+/* ============================================
+   2. WAVE GRADIENT
+   Smooth horizontal wave gradient that flows across
+   Usage: Add 'blur-wave-gradient' class to section or wrapper
+   ============================================ */
+
+.blur-wave-gradient {
+  position: relative;
+  overflow: hidden;
+}
+
+.blur-wave-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsla(195, 85%, 55%, 0.08) 20%,
+    hsla(270, 70%, 60%, 0.12) 40%,
+    hsla(175, 75%, 50%, 0.1) 60%,
+    hsla(200, 75%, 55%, 0.08) 80%,
+    transparent 100%
+  );
+  filter: blur(40px);
+  animation: wave-slide 15s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: overlay;
+}
+
+@keyframes wave-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+/* ============================================
+   3. ROTATING GRADIENT GLOW
+   Circular gradient that rotates smoothly around center
+   Usage: Add 'blur-rotating-glow' class to section or wrapper
+   ============================================ */
+
+.blur-rotating-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.blur-rotating-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    hsla(195, 85%, 55%, 0.15) 60deg,
+    hsla(270, 70%, 60%, 0.18) 120deg,
+    hsla(175, 75%, 50%, 0.12) 180deg,
+    hsla(200, 75%, 55%, 0.15) 240deg,
+    transparent 300deg,
+    transparent 360deg
+  );
+  filter: blur(80px);
+  animation: rotate-glow 30s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes rotate-glow {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ============================================
+   4. PULSING RADIAL GLOW
+   Centered glow that pulses in and out
+   Usage: Add 'blur-pulsing-glow' class to section or wrapper
+   ============================================ */
+
+.blur-pulsing-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.blur-pulsing-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(
+    circle at center,
+    hsla(195, 85%, 55%, 0.2),
+    hsla(270, 70%, 60%, 0.15),
+    hsla(175, 75%, 50%, 0.1),
+    transparent 70%
+  );
+  filter: blur(60px);
+  animation: pulse-glow 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+/* ============================================
+   5. DIAGONAL SWEEP
+   Diagonal gradient that sweeps across smoothly
+   Usage: Add 'blur-diagonal-sweep' class to section or wrapper
+   ============================================ */
+
+.blur-diagonal-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.blur-diagonal-sweep::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 30%,
+    hsla(195, 85%, 55%, 0.12) 45%,
+    hsla(270, 70%, 60%, 0.15) 50%,
+    hsla(175, 75%, 50%, 0.12) 55%,
+    transparent 70%,
+    transparent 100%
+  );
+  filter: blur(50px);
+  animation: diagonal-sweep 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes diagonal-sweep {
+  0%,
+  100% {
+    transform: translate(-30%, -30%);
+  }
+  50% {
+    transform: translate(10%, 10%);
+  }
+}
+
+/* ============================================
+   6. AURORA WAVES
+   Multi-layered gradient waves that create aurora-like effect
+   Usage: Add 'blur-aurora-waves' class to section or wrapper
+   ============================================ */
+
+.blur-aurora-waves {
+  position: relative;
+  overflow: hidden;
+}
+
+.blur-aurora-waves::before {
+  content: '';
+  position: absolute;
+  top: -25%;
+  left: -50%;
+  width: 200%;
+  height: 150%;
+  background: radial-gradient(
+      ellipse at 30% 40%,
+      hsla(195, 85%, 55%, 0.15),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 70% 60%,
+      hsla(270, 70%, 60%, 0.12),
+      transparent 50%
+    );
+  filter: blur(70px);
+  animation: aurora-wave-1 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blur-aurora-waves::after {
+  content: '';
+  position: absolute;
+  bottom: -25%;
+  right: -50%;
+  width: 200%;
+  height: 150%;
+  background: radial-gradient(
+      ellipse at 40% 50%,
+      hsla(175, 75%, 50%, 0.1),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 30%,
+      hsla(200, 75%, 55%, 0.12),
+      transparent 50%
+    );
+  filter: blur(65px);
+  animation: aurora-wave-2 22s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes aurora-wave-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translate(15%, -10%) rotate(5deg);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translate(-10%, 15%) rotate(-5deg);
+    opacity: 0.7;
+  }
+}
+
+@keyframes aurora-wave-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.5;
+  }
+  33% {
+    transform: translate(-12%, 8%) rotate(-3deg);
+    opacity: 0.7;
+  }
+  66% {
+    transform: translate(8%, -12%) rotate(3deg);
+    opacity: 0.6;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   Apply these to ensure content stays above blur effects
+   ============================================ */
+
+/* Apply to direct children of blur containers to ensure they stay above effects */
+.blur-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Alternative: Apply to section content wrappers */
+.blur-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   DARK MODE ADJUSTMENTS
+   Slightly increased opacity for better visibility in dark mode
+   ============================================ */
+
+.dark .blur-floating-orbs::before,
+.dark .blur-floating-orbs::after {
+  opacity: 1.2;
+}
+
+.dark .blur-wave-gradient::before {
+  opacity: 1.3;
+}
+
+.dark .blur-rotating-glow::before {
+  opacity: 1.2;
+}
+
+.dark .blur-pulsing-glow::before {
+  opacity: 1.4;
+}
+
+.dark .blur-diagonal-sweep::before {
+  opacity: 1.3;
+}
+
+.dark .blur-aurora-waves::before,
+.dark .blur-aurora-waves::after {
+  opacity: 1.3;
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   Respects user's motion preferences
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .blur-floating-orbs::before,
+  .blur-floating-orbs::after,
+  .blur-wave-gradient::before,
+  .blur-rotating-glow::before,
+  .blur-pulsing-glow::before,
+  .blur-diagonal-sweep::before,
+  .blur-aurora-waves::before,
+  .blur-aurora-waves::after {
+    animation: none;
+  }
+  
+  /* Static positions for reduced motion */
+  .blur-floating-orbs::before {
+    top: 0;
+    left: 0;
+  }
+  
+  .blur-floating-orbs::after {
+    bottom: 0;
+    right: 0;
+  }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATION
+   Uses will-change for better animation performance
+   ============================================ */
+
+.blur-floating-orbs::before,
+.blur-floating-orbs::after {
+  will-change: transform, opacity;
+}
+
+.blur-wave-gradient::before {
+  will-change: transform;
+}
+
+.blur-rotating-glow::before {
+  will-change: transform;
+}
+
+.blur-pulsing-glow::before {
+  will-change: transform, opacity;
+}
+
+.blur-diagonal-sweep::before {
+  will-change: transform;
+}
+
+.blur-aurora-waves::before,
+.blur-aurora-waves::after {
+  will-change: transform, opacity;
+}

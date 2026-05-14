@@ -1,0 +1,623 @@
+/* ============================================
+   DECORATIVE SHAPES & FLOATING ELEMENTS
+   
+   Usage: Add these classes to section containers for visual decoration
+   Shapes are positioned absolutely and won't interfere with content
+   ============================================ */
+
+/* ============================================
+   1. FLOATING BUBBLES
+   Animated circular bubbles that float upward
+   Usage: Add 'shapes-floating-bubbles' class to section
+   ============================================ */
+
+.shapes-floating-bubbles {
+  position: relative;
+  overflow: hidden;
+}
+
+.shapes-floating-bubbles::before {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: 10%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    hsla(195, 85%, 55%, 0.2),
+    hsla(195, 85%, 55%, 0.05)
+  );
+  border-radius: 50%;
+  border: 1px solid hsla(195, 85%, 55%, 0.3);
+  animation: bubble-float-1 15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shapes-floating-bubbles::after {
+  content: '';
+  position: absolute;
+  bottom: -15%;
+  right: 15%;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    hsla(270, 70%, 60%, 0.15),
+    hsla(270, 70%, 60%, 0.03)
+  );
+  border-radius: 50%;
+  border: 1px solid hsla(270, 70%, 60%, 0.25);
+  animation: bubble-float-2 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes bubble-float-1 {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-220vh) translateX(30px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes bubble-float-2 {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-130vh) translateX(-40px) scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   2. ROTATING GEOMETRIC SHAPES
+   Abstract geometric shapes that rotate slowly
+   Usage: Add 'shapes-rotating-geometry' class to section
+   ============================================ */
+
+.shapes-rotating-geometry {
+  position: relative;
+  overflow: hidden;
+}
+
+.shapes-rotating-geometry::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(
+    135deg,
+    hsla(195, 85%, 55%, 0.08),
+    hsla(175, 75%, 50%, 0.12)
+  );
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  border: 1px solid hsla(195, 85%, 55%, 0.2);
+  animation: rotate-morph-1 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(1px);
+}
+
+.shapes-rotating-geometry::after {
+  content: '';
+  position: absolute;
+  bottom: 20%;
+  left: 8%;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(
+    225deg,
+    hsla(270, 70%, 60%, 0.1),
+    hsla(200, 75%, 55%, 0.08)
+  );
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  animation: rotate-morph-2 30s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(1px);
+}
+
+@keyframes rotate-morph-1 {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  33% {
+    transform: rotate(120deg) scale(1.1);
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+  }
+  66% {
+    transform: rotate(240deg) scale(0.9);
+    border-radius: 50% 50% 50% 50% / 30% 70% 30% 70%;
+  }
+}
+
+@keyframes rotate-morph-2 {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.15);
+  }
+}
+
+/* ============================================
+   3. ABSTRACT SHAPES SCATTERED
+   Multiple small abstract shapes scattered around
+   Usage: Add 'shapes-abstract-scatter' class to section
+   ============================================ */
+
+.shapes-abstract-scatter {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Circle */
+.shapes-abstract-scatter::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 60px;
+  height: 60px;
+  background: hsla(195, 85%, 55%, 0.1);
+  border: 2px solid hsla(195, 85%, 55%, 0.25);
+  border-radius: 50%;
+  animation: float-gentle-1 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Square */
+.shapes-abstract-scatter::after {
+  content: '';
+  position: absolute;
+  top: 60%;
+  right: 8%;
+  width: 50px;
+  height: 50px;
+  background: hsla(270, 70%, 60%, 0.08);
+  border: 2px solid hsla(270, 70%, 60%, 0.2);
+  border-radius: 8px;
+  animation: float-gentle-2 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes float-gentle-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(20px, -15px) rotate(5deg);
+  }
+  66% {
+    transform: translate(-15px, 10px) rotate(-5deg);
+  }
+}
+
+@keyframes float-gentle-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(-25px, 20px) rotate(-8deg);
+  }
+  66% {
+    transform: translate(15px, -18px) rotate(8deg);
+  }
+}
+
+/* ============================================
+   4. PARTICLE DOTS FIELD
+   Small animated dots creating a particle effect
+   Usage: Add 'shapes-particle-dots' class to section
+   ============================================ */
+
+.shapes-particle-dots {
+  position: relative;
+  overflow: hidden;
+}
+
+.shapes-particle-dots::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle, hsla(195, 85%, 55%, 0.4) 1px, transparent 1px),
+    radial-gradient(circle, hsla(270, 70%, 60%, 0.3) 1px, transparent 1px),
+    radial-gradient(circle, hsla(175, 75%, 50%, 0.35) 1px, transparent 1px);
+  background-size: 80px 80px, 120px 120px, 100px 100px;
+  background-position: 0 0, 40px 40px, 20px 60px;
+  animation: particle-drift 40s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+@keyframes particle-drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100px, 100px);
+  }
+}
+
+/* ============================================
+   5. HEXAGON MESH
+   Hexagonal shapes creating a tech mesh pattern
+   Usage: Add 'shapes-hexagon-mesh' class to section
+   ============================================ */
+
+.shapes-hexagon-mesh {
+  position: relative;
+  overflow: hidden;
+}
+
+.shapes-hexagon-mesh::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 200px;
+  height: 230px;
+  background: linear-gradient(
+    135deg,
+    hsla(195, 85%, 55%, 0.06),
+    hsla(175, 75%, 50%, 0.08)
+  );
+  clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+  border: 1px solid hsla(195, 85%, 55%, 0.15);
+  animation: hexagon-pulse-1 12s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shapes-hexagon-mesh::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  left: -3%;
+  width: 150px;
+  height: 173px;
+  background: linear-gradient(
+    225deg,
+    hsla(270, 70%, 60%, 0.08),
+    hsla(200, 75%, 55%, 0.06)
+  );
+  clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+  border: 1px solid hsla(270, 70%, 60%, 0.15);
+  animation: hexagon-pulse-2 15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes hexagon-pulse-1 {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: rotate(30deg) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes hexagon-pulse-2 {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotate(-20deg) scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+/* ============================================
+   6. RING RIPPLES
+   Expanding concentric rings
+   Usage: Add 'shapes-ring-ripples' class to section
+   ============================================ */
+
+.shapes-ring-ripples {
+  position: relative;
+  overflow: hidden;
+}
+
+.shapes-ring-ripples::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 15%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid hsla(195, 85%, 55%, 0.3);
+  border-radius: 50%;
+  animation: ring-ripple-1 4s ease-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shapes-ring-ripples::after {
+  content: '';
+  position: absolute;
+  bottom: 25%;
+  right: 20%;
+  width: 80px;
+  height: 80px;
+  border: 2px solid hsla(270, 70%, 60%, 0.3);
+  border-radius: 50%;
+  animation: ring-ripple-2 5s ease-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes ring-ripple-1 {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes ring-ripple-2 {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   7. CUBIC BLOCKS
+   3D-looking cubic blocks that rotate
+   Usage: Add 'shapes-cubic-blocks' class to section
+   ============================================ */
+
+.shapes-cubic-blocks {
+  position: relative;
+  overflow: hidden;
+}
+
+.shapes-cubic-blocks::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: 12%;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(
+    135deg,
+    hsla(195, 85%, 55%, 0.15) 0%,
+    hsla(195, 85%, 55%, 0.05) 50%,
+    hsla(195, 85%, 55%, 0.1) 100%
+  );
+  border: 1px solid hsla(195, 85%, 55%, 0.25);
+  transform: rotate(45deg);
+  animation: cube-rotate-1 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: 0 0 30px hsla(195, 85%, 55%, 0.2);
+}
+
+.shapes-cubic-blocks::after {
+  content: '';
+  position: absolute;
+  bottom: 30%;
+  left: 10%;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(
+    225deg,
+    hsla(270, 70%, 60%, 0.15) 0%,
+    hsla(270, 70%, 60%, 0.05) 50%,
+    hsla(270, 70%, 60%, 0.1) 100%
+  );
+  border: 1px solid hsla(270, 70%, 60%, 0.25);
+  transform: rotate(45deg);
+  animation: cube-rotate-2 25s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: 0 0 30px hsla(270, 70%, 60%, 0.2);
+}
+
+@keyframes cube-rotate-1 {
+  0% {
+    transform: rotate(45deg) rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotate(45deg) rotateX(360deg) rotateY(360deg);
+  }
+}
+
+@keyframes cube-rotate-2 {
+  0% {
+    transform: rotate(45deg) rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotate(45deg) rotateX(-360deg) rotateY(-360deg);
+  }
+}
+
+/* ============================================
+   8. SPIRAL LINES
+   Animated spiral lines rotating around
+   Usage: Add 'shapes-spiral-lines' class to section
+   ============================================ */
+
+.shapes-spiral-lines {
+  position: relative;
+  overflow: hidden;
+}
+
+.shapes-spiral-lines::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  background: 
+    linear-gradient(0deg, transparent 48%, hsla(195, 85%, 55%, 0.4) 50%, transparent 52%),
+    linear-gradient(90deg, transparent 48%, hsla(270, 70%, 60%, 0.4) 50%, transparent 52%);
+  animation: spiral-rotate 15s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+}
+
+@keyframes spiral-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Ensure content stays above shapes */
+.shapes-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Alternative content wrapper */
+.shapes-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   DARK MODE ADJUSTMENTS
+   ============================================ */
+
+.dark .shapes-floating-bubbles::before,
+.dark .shapes-floating-bubbles::after {
+  opacity: 1.3;
+}
+
+.dark .shapes-rotating-geometry::before,
+.dark .shapes-rotating-geometry::after {
+  opacity: 1.4;
+}
+
+.dark .shapes-abstract-scatter::before,
+.dark .shapes-abstract-scatter::after {
+  opacity: 1.5;
+}
+
+.dark .shapes-particle-dots::before {
+  opacity: 0.7;
+}
+
+.dark .shapes-hexagon-mesh::before,
+.dark .shapes-hexagon-mesh::after {
+  opacity: 1.3;
+}
+
+.dark .shapes-cubic-blocks::before,
+.dark .shapes-cubic-blocks::after {
+  opacity: 1.4;
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .shapes-floating-bubbles::before,
+  .shapes-floating-bubbles::after,
+  .shapes-rotating-geometry::before,
+  .shapes-rotating-geometry::after,
+  .shapes-abstract-scatter::before,
+  .shapes-abstract-scatter::after,
+  .shapes-particle-dots::before,
+  .shapes-hexagon-mesh::before,
+  .shapes-hexagon-mesh::after,
+  .shapes-ring-ripples::before,
+  .shapes-ring-ripples::after,
+  .shapes-cubic-blocks::before,
+  .shapes-cubic-blocks::after,
+  .shapes-spiral-lines::before {
+    animation: none;
+  }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATION
+   ============================================ */
+
+.shapes-floating-bubbles::before,
+.shapes-floating-bubbles::after,
+.shapes-rotating-geometry::before,
+.shapes-rotating-geometry::after,
+.shapes-cubic-blocks::before,
+.shapes-cubic-blocks::after {
+  will-change: transform, opacity;
+}
+
+.shapes-particle-dots::before {
+  will-change: transform;
+}
+
+.shapes-ring-ripples::before,
+.shapes-ring-ripples::after {
+  will-change: transform, opacity;
+}

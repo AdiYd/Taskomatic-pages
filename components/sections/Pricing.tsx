@@ -1,4 +1,5 @@
 import { PricingGrid } from '@/components/client-ui/PricingGrid';
+import { FadeBlur } from '@/components/animations';
 
 // Pricing Section Content Configuration
 const PRICING_CONTENT = {
@@ -83,21 +84,20 @@ export function Pricing({
   plans = PRICING_CONTENT.plans,
 }: PricingProps) {
   return (
-    <section
-      id="pricing"
-      className="bg-muted/30 relative w-full overflow-hidden py-20 md:py-32"
-    >
+    <section id="pricing">
       <div className="container mx-auto max-w-6xl px-4">
-        <div className="mb-16 text-center">
-          <h2 className="text-gradient-accent mb-4 text-3xl font-bold md:text-4xl">
-            {title}
-          </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-xl">
-            {subtitle}
-          </p>
-        </div>
+        <FadeBlur direction="up" duration={0.6}>
+          <div className="mb-16 text-center">
+            <h2 className="text-gradient-primary mb-4 text-3xl font-bold md:text-4xl">
+              {title}
+            </h2>
+            <p className="text-muted-foreground mx-auto max-w-2xl text-xl">
+              {subtitle}
+            </p>
+          </div>
 
-        <PricingGrid plans={plans} />
+          <PricingGrid plans={plans} />
+        </FadeBlur>
       </div>
     </section>
   );

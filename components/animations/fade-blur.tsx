@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ReactNode, useRef } from 'react';
+import { ReactNode, useRef, useEffect, useState } from 'react';
 
 interface FadeBlurProps {
   children: ReactNode;
@@ -19,10 +19,24 @@ export function FadeBlur({
   className,
 }: FadeBlurProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(true); // Mobile-first: start with true
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Mobile: ULTRA-fast animation that completes as soon as element is visible
+  // Desktop: smoother progression
+  const offset: ['start end', 'start 0.7'] | ['start 0.85', 'start 0.5'] =
+    isMobile ? ['start end', 'start 0.7'] : ['start 0.85', 'start 0.5'];
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start 0.85', 'start 0.5'],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    offset: offset as any,
   });
 
   // Calculate movement based on direction
@@ -55,10 +69,11 @@ export function FadeBlur({
         y,
         opacity,
         scale,
-        filter: useTransform(blurValue, value => `blur(${value}px)`),
+        filter: useTransform(blurValue, (value) => `blur(${value}px)`),
       }}
       transition={{ duration, ease: 'easeOut' }}
       className={className}
+      data-framer-motion
     >
       {children}
     </motion.div>

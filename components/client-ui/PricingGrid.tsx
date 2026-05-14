@@ -43,9 +43,9 @@ export function PricingGrid({ plans }: PricingGridProps) {
           transition={{ duration: 0.5, delay: index * 0.1 }}
         >
           <Card
-            className={`group relative flex h-full flex-col border-2 transition-all duration-300 hover:shadow-2xl ${
+            className={`group relative z-50 flex h-full flex-col backdrop-blur-sm transition-all duration-300 hover:shadow-2xl ${
               plan.highlighted
-                ? 'border-primary bg-gradient-primary/5 scale-105 shadow-2xl'
+                ? 'border-primary from-primary/5 scale-105 border-2 bg-linear-to-b shadow-2xl'
                 : 'border-border hover:border-primary/50'
             }`}
           >
@@ -68,7 +68,7 @@ export function PricingGrid({ plans }: PricingGridProps) {
             <CardContent className="flex flex-1 flex-col">
               <motion.div whileHover={{ scale: 1.05 }} className="mb-8">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-gradient-accent text-5xl font-bold">
+                  <span className="text-accent text-5xl font-bold">
                     {plan.price}
                   </span>
                   <span className="text-muted-foreground text-lg">
@@ -102,12 +102,10 @@ export function PricingGrid({ plans }: PricingGridProps) {
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
-                  variant={plan.highlighted ? 'default' : 'outline'}
+                  variant={plan.highlighted ? 'main' : 'main-outline'}
                   size="lg"
                   className={`w-full ${
-                    plan.highlighted
-                      ? 'bg-gradient-primary hover:opacity-90'
-                      : ''
+                    plan.highlighted ? 'hover:opacity-90' : ''
                   }`}
                 >
                   {plan.cta}

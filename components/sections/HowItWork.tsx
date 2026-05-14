@@ -1,4 +1,5 @@
 import { StepsGrid } from '@/components/client-ui/StepsGrid';
+import { SlideScale } from '@/components/animations';
 
 // How It Works Section Content Configuration
 const HOW_IT_WORKS_CONTENT = {
@@ -49,21 +50,20 @@ export function HowItWorks({
   steps = HOW_IT_WORKS_CONTENT.steps,
 }: HowItWorksProps) {
   return (
-    <section
-      id="how-it-works"
-      className="bg-muted/30 relative w-full overflow-hidden py-20 md:py-32"
-    >
+    <section id="how-it-works" className="bg-background clip-wave-bottom">
       <div className="container mx-auto max-w-6xl px-4">
-        <div className="mb-16 text-center">
-          <h2 className="text-gradient-secondary mb-4 text-3xl font-bold md:text-4xl">
-            {title}
-          </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-xl">
-            {subtitle}
-          </p>
-        </div>
+        <SlideScale>
+          <div className="mb-16 text-center">
+            <h2 className="text-gradient-secondary mb-4 text-3xl font-bold md:text-4xl">
+              {title}
+            </h2>
+            <p className="text-muted-foreground mx-auto max-w-2xl text-xl">
+              {subtitle}
+            </p>
+          </div>
 
-        <StepsGrid steps={steps} />
+          <StepsGrid steps={steps} />
+        </SlideScale>
       </div>
     </section>
   );

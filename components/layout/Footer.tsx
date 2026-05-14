@@ -8,8 +8,13 @@ import { Sparkles, ArrowRight } from 'lucide-react';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
-export function Footer() {
+interface FooterProps {
+  className?: string;
+}
+
+export function Footer({ className }: FooterProps = {}) {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
 
@@ -28,7 +33,12 @@ export function Footer() {
   };
 
   return (
-    <footer className="from-muted/30 to-background border-t bg-linear-to-b">
+    <footer
+      className={cn(
+        'from-muted/30 to-background border-t bg-linear-to-b',
+        className
+      )}
+    >
       <div className="mx-auto px-4">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 gap-12 py-16 md:grid-cols-2 lg:grid-cols-6">

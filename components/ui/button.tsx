@@ -13,7 +13,7 @@ const buttonVariants = cva(
         'main-outline':
           'border-2 border-foreground bg-background text-foreground hover:bg-foreground hover:text-background hover:scale-[1.02] active:scale-[0.98]',
         default:
-          'bg-primary text-primary-foreground shadow-md hover:shadow-lg hover:bg-primary-hover shine-on-hover hover:scale-[1.02] active:scale-[0.98]',
+          'bg-primary shine-button text-primary-foreground shadow-md hover:shadow-lg hover:bg-primary-hover shine-on-hover hover:scale-[1.02] active:scale-[0.98]',
         secondary:
           'bg-secondary text-secondary-foreground shadow-md hover:shadow-lg hover:bg-secondary-hover hover:scale-[1.02] active:scale-[0.98]',
         accent:

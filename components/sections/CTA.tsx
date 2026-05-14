@@ -1,4 +1,5 @@
 import { CTAContent } from '@/components/client-ui/CTAContent';
+import { ParallaxReveal } from '@/components/animations';
 
 // CTA Section Content Configuration
 const CTA_CONTENT = {
@@ -23,11 +24,15 @@ export function CTA({
   subcta = CTA_CONTENT.subcta,
 }: CTAProps) {
   return (
-    <section className="bg-gradient-accent relative w-full overflow-hidden py-20 text-white md:py-32">
-      {/* Animated background */}
-      <div className="bg-gradient-radial absolute inset-0 opacity-50" />
-
-      <CTAContent title={title} subtitle={subtitle} cta={cta} subcta={subcta} />
+    <section className="blur-rotating-glow">
+      <ParallaxReveal speed={0.5}>
+        <CTAContent
+          title={title}
+          subtitle={subtitle}
+          cta={cta}
+          subcta={subcta}
+        />
+      </ParallaxReveal>
     </section>
   );
 }

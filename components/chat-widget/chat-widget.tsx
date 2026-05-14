@@ -14,7 +14,7 @@ import {
   TooltipTrigger,
   useToast,
 } from '@/components/ui';
-import { DEFAULT_LEADS_EMAILS } from '@/lib/constants';
+import { LEADS_EMAILS } from '@/lib/constants';
 import { leadFormTemplate } from '@/lib/email-templates';
 import { cn, formatTimestamp } from '@/lib/utils';
 import { Icon } from '@iconify/react';
@@ -255,7 +255,7 @@ export function ChatbotWidget({ hideInput }: { hideInput?: boolean }) {
 
       // Send email via API route
       await serverSendEmail({
-        to: DEFAULT_LEADS_EMAILS,
+        to: LEADS_EMAILS,
         subject: 'טופס יצירת קשר חדש מ-Taskomatic Chat Widget',
         html: emailTemplate,
         from: 'Taskomatic <leads@webly.digital>',
