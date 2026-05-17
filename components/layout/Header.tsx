@@ -78,7 +78,7 @@ export function Header() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-75 sm:w-100">
+            <SheetContent side="right" className="w-65 sm:w-100">
               <SheetHeader>
                 <SheetTitle className="text-left">
                   <span className="text-gradient-primary text-2xl font-bold">

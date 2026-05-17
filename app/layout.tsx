@@ -9,7 +9,7 @@ import './carousel-3d.css';
 
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants';
 import { ThemeProvider } from '@/components/theme-provider';
-import { ScrollToTop } from '@/components/layout';
+import { CookieToastEn, ScrollToTop } from '@/components/layout';
 import { AccessibilityWidgetEnglish } from '@/components/layout/accessibility-widget/accessibility-widget-en';
 
 const rubik = Rubik({
@@ -74,6 +74,7 @@ export default function RootLayout({
           {children}
           <ScrollToTop />
           <AccessibilityWidgetEnglish />
+          <CookieToastEn />
         </ThemeProvider>
       </body>
     </html>

@@ -7,9 +7,8 @@ import {
   CarouselItem,
   CarouselDots,
 } from '@/components/ui/carousel';
-import { Star } from 'lucide-react';
+import { Quote, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 
 interface Testimonial {
@@ -31,8 +30,6 @@ const googleGradientsColors = [
 ];
 
 export function TestimonialsGrid({ testimonials }: TestimonialsGridProps) {
-  const isMobile = useMobile();
-
   return (
     <Carousel
       opts={{
@@ -48,16 +45,14 @@ export function TestimonialsGrid({ testimonials }: TestimonialsGridProps) {
             key={index}
           >
             <motion.div
-              initial={
-                isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-              }
+              initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: '-50px' }}
               transition={{
-                duration: 0.8,
-                delay: (index % 4) * 0.15,
+                duration: 0.6,
+                delay: (index % 4) * 0.1,
                 type: 'spring',
-                stiffness: 100,
+                stiffness: 120,
               }}
               className="h-full"
             >
@@ -66,16 +61,20 @@ export function TestimonialsGrid({ testimonials }: TestimonialsGridProps) {
                 <div className="from-primary/5 to-accent/5 absolute inset-0 bg-linear-to-br via-transparent opacity-0 group-hover:opacity-100" />
 
                 {/* Quote icon decoration */}
-                {/* <motion.div
-                  className="absolute top-4 left-4 opacity-10"
+                <motion.div
+                  className="absolute top-4 right-4 opacity-10"
                   animate={{
                     rotate: [0, 10, 0],
                     scale: [1, 1.1, 1],
                   }}
-                  transition={{ duration: 4, repeat: Infinity, delay: index * 0.3 }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    delay: index * 0.3,
+                  }}
                 >
-                  <Quote className="w-12 h-12 text-primary" />
-                </motion.div> */}
+                  <Quote className="text-primary h-12 w-12" />
+                </motion.div>
 
                 <CardHeader className="relative">
                   <div className="mb-4 flex items-center gap-4">

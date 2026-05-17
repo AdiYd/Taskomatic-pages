@@ -22,7 +22,7 @@ export function HeaderWrapper({
   const [isVisible, setIsVisible] = useState(true);
   const [, setIsAtTop] = useState(true);
   const lastScrollY = useRef(0);
-  const { scrollY } = useScroll({ layoutEffect: false });
+  const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const currentScrollY = latest;

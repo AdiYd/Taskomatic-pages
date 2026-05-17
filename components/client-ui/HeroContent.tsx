@@ -65,8 +65,8 @@ export function HeroContent({
                 size="lg"
                 className="group shadow-xl hover:shadow-2xl"
               >
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 {cta}
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

@@ -6,6 +6,7 @@ import { HowItWorks } from '@/components/sections/HowItWork';
 import { Pricing } from '@/components/sections/Pricing';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { FAQ } from '@/components/sections/FAQ';
+import { ContactUs } from '@/components/sections/ContactUs';
 import { CTA } from '@/components/sections/CTA';
 
 export default function Home() {
@@ -34,6 +35,7 @@ export default function Home() {
         <HowItWorks />
         <Pricing />
 
+        <ContactUs />
         <Testimonials />
         <FAQ />
         <CTA />

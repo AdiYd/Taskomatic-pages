@@ -8,3 +8,5 @@ export { HeaderWrapper } from '../client-ui/HeaderWrapper';
 export { Footer } from './Footer';
 export { ScrollToTop } from './ScrollToTop';
 export { ThemeToggle } from './theme-toggle';
+export { CookieToast } from './CookieToast';
+export { CookieToastEn } from './CookieToast-en';

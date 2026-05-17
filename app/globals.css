@@ -66,6 +66,10 @@
   --input: 200 25% 88%;
   --ring: 200 75% 55%;
   
+  /* Form Field States */
+  --field-valid: var(--success);
+  --field-error: var(--destructive);
+  
   /* ============================================
      BORDER RADIUS SYSTEM
      ============================================ */
@@ -1170,6 +1174,29 @@
 
   .z-notification {
     z-index: var(--z-notification);
+  }
+
+  /* Form Field Validation States */
+  .field-valid {
+    border-color: hsl(var(--field-valid));
+    box-shadow: 0 0 0 1px hsl(var(--field-valid) / 0.2);
+  }
+
+  .field-valid:focus {
+    border-color: hsl(var(--field-valid));
+    ring: 2px solid hsl(var(--field-valid) / 0.3);
+    box-shadow: 0 0 0 3px hsl(var(--field-valid) / 0.1);
+  }
+
+  .field-error {
+    border-color: hsl(var(--field-error));
+    box-shadow: 0 0 0 1px hsl(var(--field-error) / 0.2);
+  }
+
+  .field-error:focus {
+    border-color: hsl(var(--field-error));
+    ring: 2px solid hsl(var(--field-error) / 0.3);
+    box-shadow: 0 0 0 3px hsl(var(--field-error) / 0.1);
   }
 
 }
